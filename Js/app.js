@@ -29,3 +29,7 @@ function start() {
     let currentTime = " Dabartinis laikas " + hour + ":" + min + ":" + sec; // + " " + am_pm;
     document.getElementById("laikrodis").innerHTML = currentTime;
   }
+
+
+
+  
