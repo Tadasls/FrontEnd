@@ -1,0 +1,21 @@
+/* 
+#alertoverlay{display: none;
+    opacity: .8;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    background: #FFF;
+    width: 100%;}
+
+#alertbox{display: none;
+    position: fixed;
+    background: #000;
+    border:7px dotted #fb1414;
+    border-radius:10px; 
+    font-size:20px;}
+
+#alertbox > div > #alertboxhead{background:red; padding:10px;color:#FFF;}
+#alertbox > div > #alertboxbody{ background:red; padding:40px;color:rgb(255, 255, 255); } 
+#alertbox > div > #alertboxfoot{ background: red; padding:10px; text-align:right;}
+ */
+

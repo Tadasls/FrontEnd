@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ToDoApp</title>
+    <link rel="stylesheet" href="/Css/main.css">
+    <link rel="stylesheet" href="/Css/todo.css">
+    <link rel="shortcut icon" href="img/favicon.ico">
+  </head>
+
+
+
+  <body>
+    <main class="container main-class">
+      <header class="main-header"> </header>
+    <div class="container-row-space-between-justify">
+      <div> 
+      <div style = "height: 20px; width: 200px; background-color: rgb(10, 1, 80); border-top-left-radius: 10px 10px; color: white" >
+      </div>
+      <div style = "height: 100%; width: 200px; border-bottom-left-radius: 50px 50px; background-color: rgb(10, 1, 80); color: white" >
+        <p> 
+        <h2>Competition Events Manager v1.01<br> </h2>
+        <hr>
+        <h3 style = "margin: 5px; padding: 5px;">
+          Sveiki Prisijungę : 
+        </h3>
+        <hr>
+        <div style = "flex-wrap: wrap;" class="meniu">
+          <div>
+            <div>User:</div> <div id="nulinis" style="width: 100px;"> 1</div> 
+          </div>
+        <!-- <div>
+          <div>Vardas:</div><div id="pirmas"  style="width: 100px;"> 2</div> 
+        </div>
+        <div>
+          <div>Pavardė:</div> <div id="antras"  style="width: 100px;"> 3</div> 
+        </div>
+         <div>
+          <div>Email:</div> <div id="trecias" style="width: 100px;"> 4 </div> 
+         </div> -->
+       
+        
+        </div>
+
+        <hr />
+        
+        <br>
+        <div style = "flex-wrap: wrap; display: flex; margin-left: 30px;" >
+          <form action="index.html" class="mygtukai">
+            <button type="submit">Atsijungti</button>
+          </form>
+          <br>
+          <form class="mygtukai"> 
+            <button type="button" id="add_actions"> ADD/- Meniu </button>
+          </form>
+        </div>
+      
+
+      </p>
+      </div>
+      </div>
+
+      <div>
+          <div style = "height: 20px; width: 600px; background-color: #f7f7f7; border-top-right-radius: 20px;" >
+            <p style= "font-size: small; padding: 10px;"></p>
+          </div>
+          <div style = "height: 100%; width: 600px; background-color: #f7f7f7" >
+            <h2>ToDo Puslapis</h2>
+            <hr>
+
+            <div class="edit" id = "editforma" style = "display:none">
+              MENIU for CREATE & EDIT & DELETE
+              <br /><br />
+              <form id="user-edit-form">
+                <label for="name">Id</label>
+                <input type="number" name="id" id="id" /> <br /><br />
+                <label for="type">Type</label>
+                <input type="text" name="type" id="type" placeholder="Pranešimo Tipas" />  
+                <br /><br />
+                <label for="content">Content</label>
+                <textarea  rows="2" cols="18" name="content" id="content" placeholder="Jūsų pranešimo turinys" ></textarea>
+                <br /><br />
+                <label for="endDate">EndDate</label>
+                <input type="date" name="endDate" id="endDate" placeholder="Galiojimo data" />
+                <br /><br />
+                <input type="button" id="user-create-submit" value="Įrašyti" />
+                <input type="button" id="user-edit-form-submit" value="Atnaujinti" />
+                <input type="button" id="user-delete-submit" value="Trinti">
+              </form>
+            </div>
+
+                      <div class="app" style = "margin: 5px;">
+                      <input type="text" id="searchInput" placeholder="iveskite turinio filtravimo kriterijus...">
+                
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Id</th>
+                            <th>Tipas</th>
+                            <th>Turinys</th>
+                            <th>Galiojimo data</th>
+                          </tr>
+                        </thead>
+                        <tbody id="names">
+                         
+                        </tbody>
+                      </table>
+                      <input type="button" id="user-view-submit" value="Gauti duomenis" style="margin: 5px;"/>
+                    </div>
+                                       
+                  
+
+
+          </div>
+
+      </div>  
+  </div>
+ </div>
+
+
+
+
+    
+<footer id = "copyright" style  = "text-align: right;" >Copyright &copy; 2023 Tadas Laurinaitis</footer>
+    <script src="/js/todo.js"></script>
+  </body>
+</html>
+
+
+  
+    
+    
+      
+    
+      
+      
