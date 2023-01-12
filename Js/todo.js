@@ -11,6 +11,9 @@ document.addEventListener("DOMContentLoaded", () => {
  // }, 1000);
 });
 
+
+
+
 //validacijos
 const arUzpyldytiVartDuomenis = () => {
   if (!type.value) return false;
@@ -69,10 +72,10 @@ userFormSbmBtn.addEventListener("click", (e) => {
 
 //view all for one user
 
+
 const userViewFormSbmBtn = document.querySelector("#user-view-submit");
 
-// const url = "https://testapi.io/api/Tadasls/resource/TLSusersDuomenys";
-const url = "https://localhost:7125/api/data/get";
+const url = "https://localhost:7134/api/Horse/Horses";
 const options = {
   method: "get",
   headers: {
@@ -85,43 +88,32 @@ const response = {};
 function viewData() {
   fetch(url, options)
     .then((response) => response.json())
-    .then((duomenys) => {
-      const vienoVartotojoUzrasai = [];
+    .then((a) => {
+     //  console.log(a);
+       let visiDuomenys = "";
 
-      for (const uzrasas of duomenys) {
-        if (uzrasas.userId === user.ID) {
-          vienoVartotojoUzrasai.push({
-            ID: uzrasas.id,
-            Type: uzrasas.type,
-            Content: uzrasas.content,
-            EndDate: uzrasas.endDate,
-            // Created:
-            //   uzrasas.createdAt.slice(0, 10) +
-            //   " " +
-            //   uzrasas.createdAt.slice(11, 19),
-            // Updated:
-            //   uzrasas.updatedAt.slice(0, 10) +
-            //   " " +
-            //   uzrasas.updatedAt.slice(11, 19),
-          });
-        }
-      }
+    a.forEach((element) => {
+     // console.log(element);
+      let filtruojamiDuomuo 
+      = `<tr><td> ${element.horseID}</td>
+             <td>${element.horseName}</td>
+             <td>${element.ownerName}</td>
+   
+    </tr>`;
+      tarpas = `<hr>`;
+      visiDuomenys += tarpas;
+      visiDuomenys += filtruojamiDuomuo;
 
-      let visiDuomenys = "";
-
-      vienoVartotojoUzrasai.forEach((element) => {
-        let filtruojamiDuomuo = `<tr><td> ${element.ID}</td>
-      <td>${element.Type}</td>
-      <td>${element.Content}</td>
-      <td>${element.EndDate}</td>
-      </tr>`;
-        tarpas = `<hr>`;
-        visiDuomenys += tarpas;
-        visiDuomenys += filtruojamiDuomuo;
-      });
-      names.innerHTML = visiDuomenys;
     });
+    names.innerHTML = visiDuomenys;
+})
 }
+
+      
+
+   
+
+
 
 userViewFormSbmBtn.addEventListener("click", (e) => {
   e.preventDefault();

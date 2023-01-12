@@ -32,4 +32,74 @@ function start() {
 
 
 
+
+
+//view list of all events
+const userViewFormSbmBtn = document.querySelector("#user-view-submit");
+
+  const url = "https://localhost:7134/api/Horse/Horses";
+  const options = {
+    method: "get",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  };
+  const response = {};
+  
+  function viewData() {
+    fetch(url, options)
+      .then((response) => response.json())
+      .then((a) => {
+         console.log(a);
+         let visiDuomenys = "";
+  
+      a.forEach((element) => {
+       // console.log(element);
+        let filtruojamiDuomuo 
+        = `<tr><td> ${element.horseID}</td>
+               <td>${element.horseName}</td>
+               <td>${element.ownerName}</td>
+     
+      </tr>`;
+        tarpas = `<hr>`;
+        visiDuomenys += tarpas;
+        visiDuomenys += filtruojamiDuomuo;
+  
+      });
+      names.innerHTML = visiDuomenys;
+  })
+  }
+
+
+
+  document.addEventListener("DOMContentLoaded", () => {
+   
+   setTimeout(() => {
+     viewData();
+   }, );
+  });
+
+
+
+
+
+
+
+//filtravimas
+
+function filter() {
+  let value = document.getElementById("searchInput").value.toUpperCase();
+  var names = document.getElementById("names");
+  var rows = names.getElementsByTagName("tr");
+
+  for (i = 0; i < rows.length; i++) {
+    let column = rows[i].getElementsByTagName("td")[2];
+    let language = column.textContent;
+
+    rows[i].style.display =
+      language.toUpperCase().indexOf(value) > -1 ? "" : "none";
+  }
+}
+document.getElementById("searchInput").addEventListener("keyup", filter);
   
