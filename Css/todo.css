@@ -37,7 +37,6 @@ label{
     font-family: "lato", sans-seriff;
   }
   
-  /* Remove border and outline around input. Set width to take up the entire width of parent and set margin on bottom */
   
   #searchInput {
     border: none;
@@ -46,8 +45,7 @@ label{
     margin-bottom: 5px;
   }
   
-  /* When input gains focus, add a blue border below it */
-  
+
   #searchInput:focus {
     border-bottom: 1px solid #45b654;
   }
@@ -58,19 +56,19 @@ label{
     height: 100%;
   }
   
-  /* Collapse all borders separating each cell. Table takes up entire width of .app. Set gray shadow around table */
+
   table {
     border-collapse: collapse;
     width: 100%;
     box-shadow: 0 5px 7px gray;
   }
   
-  /* Set shadow on just the table head */
+
   thead {
     box-shadow: 0px 0px 10px gray;
   }
   
-  /* Add some space around table heading. Align text to right and transform to uppercase */
+
   
   th {
   
@@ -78,10 +76,7 @@ label{
     letter-spacing: 1px;
     text-align: left;
   }
-  
-  
-  /* Create alternating color(blue) across the rows. Set blue on all even ones (2, 4, 6 ...) */
-  
+    
   tr:nth-child(even) {
     background-color: #dee8f5;
   }

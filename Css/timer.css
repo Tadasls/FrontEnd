@@ -6,6 +6,8 @@
         color: white;
         
     }
+    
+
 
     #start-button {
         font-size: 20px;
@@ -26,3 +28,19 @@
         background-color: rgb(121, 121, 121);
         color: white;
     }
+
+
+    
+
+.flex-container {
+ 
+    display: flex;
+    
+    flex-flow: row wrap;
+
+    justify-content: space-around;
+    
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }

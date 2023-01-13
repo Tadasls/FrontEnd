@@ -229,6 +229,10 @@ userDelFormSbmBtn.addEventListener("click", (e) => {
   }
 });
 
+
+
+//isskleidziamas meniu
+
 add_actions.addEventListener("click", showForm);
 function showForm() {
   document.getElementById("editforma").style.display =
@@ -301,7 +305,7 @@ function validateDataEditinimui() {
     });
 }
 
-//filtravimas
+//filtravimas ok
 
 function filter() {
   let value = document.getElementById("searchInput").value.toUpperCase();
