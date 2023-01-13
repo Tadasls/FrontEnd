@@ -1,20 +1,81 @@
-//prisijungimo duomenys
-
+//show username 
 document.addEventListener("DOMContentLoaded", () => {
   const o = Object.assign({}, JSON.parse(localStorage.getItem('userData')));
   nulinis.innerHTML = o.userName ?? ``;
-  //pirmas.innerHTML = o.regUserName ?? ``;
- // antras.innerHTML = o.regUserLastname ?? ``;
-  //trecias.innerHTML = o.regUserName ??``;
- // setTimeout(() => {
-   // viewData();
- // }, 1000);
 });
 
+//data view filter
+function filter() {
+  let value = document.getElementById("searchInput").value.toUpperCase();
+  var names = document.getElementById("names");
+  var rows = names.getElementsByTagName("tr");
+
+  for (i = 0; i < rows.length; i++) {
+    let column = rows[i].getElementsByTagName("td")[2];
+    let language = column.textContent;
+
+    rows[i].style.display =
+      language.toUpperCase().indexOf(value) > -1 ? "" : "none";
+  }
+}
+document.getElementById("searchInput").addEventListener("keyup", filter);
+
+//view all for one user
 
 
 
-//validacijos
+const userID = JSON.parse(localStorage.getItem('localUserId'));
+const userViewFormSbmBtn = document.querySelector("#user-view-submit");
+  const url = "https://localhost:7134/GetAllHorses/"+userID.userID;
+  const options = {
+    method: "get",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      'Authorization': 'Bearer ' + window.localStorage.getItem('token')
+    },
+  };
+  const response = {};
+  function viewData() {
+    fetch(url, options)
+      .then((response) => response.json())
+      .then( async a => {
+         console.log(a);
+         let visiDuomenys = "";
+  
+      a.forEach((element) => {
+        console.log(element);
+        let filtruojamiDuomuo 
+        = `<tr><td> ${element.horseID}</td>
+               <td>${element.horseName}</td>
+               <td>${element.ownerName}</td>
+     
+      </tr>`;
+        tarpas = `<hr>`;
+        visiDuomenys += tarpas;
+        visiDuomenys += filtruojamiDuomuo;
+  
+      });
+      names.innerHTML = visiDuomenys;
+  })
+  }
+
+
+  userViewFormSbmBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    viewData();
+  });
+
+
+
+
+
+
+
+
+
+
+//validation
 const arUzpyldytiVartDuomenis = () => {
   if (!type.value) return false;
   if (!content.value) return false;
@@ -26,6 +87,8 @@ const arUzpildytiIdData = () => {
   if (!id.value) return false;
   return true;
 };
+
+
 
 //create new
 
@@ -70,55 +133,8 @@ userFormSbmBtn.addEventListener("click", (e) => {
   }
 });
 
-//view all for one user
 
 
-const userViewFormSbmBtn = document.querySelector("#user-view-submit");
-
-  const url = "https://localhost:7134/api/Horse/GetAllHorses";
-  const options = {
-    method: "get",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-  };
-  const response = {};
-  
-  function viewData() {
-    fetch(url, options)
-      .then((response) => response.json())
-      .then((a) => {
-         console.log(a);
-         let visiDuomenys = "";
-  
-      a.forEach((element) => {
-        console.log(element);
-        let filtruojamiDuomuo 
-        = `<tr><td> ${element.horseID}</td>
-               <td>${element.horseName}</td>
-               <td>${element.ownerName}</td>
-     
-      </tr>`;
-        tarpas = `<hr>`;
-        visiDuomenys += tarpas;
-        visiDuomenys += filtruojamiDuomuo;
-  
-      });
-      names.innerHTML = visiDuomenys;
-  })
-  }
-
-      
-
-   
-
-
-
-userViewFormSbmBtn.addEventListener("click", (e) => {
-  e.preventDefault();
-  viewData();
-});
 
 //edit data
 
@@ -235,37 +251,6 @@ function showForm() {
     editforma.style.display == "none" ? "block" : "none";
 }
 
-// add_actions.addEventListener('click', (e) => {
-// document.querySelector('#SpecVieta').innerHTML = VeiksmuMeniu[0].AVeiksmas;
-
-// })
-
-// const VeiksmuMeniu = [
-//   {
-//     AVeiksmas: `<div class="edit">
-//     CREATE & EDIT & DELETE
-//     <br /><br />
-//     <form id="user-edit-form">
-//       <label for="name">Id</label>
-//       <input type="number" name="id" id="id" /> <br /><br />
-//       <label for="type">Type</label>
-//       <input type="text" name="type" id="type" placeholder="Pranšimo Tipas" />
-//       <br /><br />
-//       <label for="content">Content</label>
-//       <input type="text" name="content" id="content" placeholder="Jūsų pranešimo turinys" />
-//       <br /><br />
-//       <label for="endDate">EndDate</label>
-//       <input type="text" name="endDate" id="endDate" placeholder="Galiojimo data" />
-//       <br /><br />
-//       <input type="button" id="user-create-submit" value="Įrašyti" />
-//       <input type="button" id="user-edit-form-submit" value="Atnaujinti" />
-//       <input type="button" id="user-delete-submit" value="Trinti">
-//     </form>
-//   </div>`,
-//   }
-//   ,
-//   {}
-// ];
 
 //validacijos papildomai trinymui
 
@@ -332,19 +317,12 @@ function validateDataEditinimui() {
     });
 }
 
-//filtravimas
 
-function filter() {
-  let value = document.getElementById("searchInput").value.toUpperCase();
-  var names = document.getElementById("names");
-  var rows = names.getElementsByTagName("tr");
 
-  for (i = 0; i < rows.length; i++) {
-    let column = rows[i].getElementsByTagName("td")[2];
-    let language = column.textContent;
 
-    rows[i].style.display =
-      language.toUpperCase().indexOf(value) > -1 ? "" : "none";
-  }
-}
-document.getElementById("searchInput").addEventListener("keyup", filter);
+
+
+
+
+
+

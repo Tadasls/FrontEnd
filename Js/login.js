@@ -36,11 +36,12 @@ fetch(postURL, {
 
   var resBody = await res.json();
 
-  const vartotojoDuomenys = {userName: resBody.userName,};
+ const userName = {userName: resBody.userName};
+ const localUserId = {userID: resBody.id};
 
   window.localStorage.setItem('token', resBody.token);
-  window.localStorage.setItem('userData', JSON.stringify(vartotojoDuomenys));
-
+  window.localStorage.setItem('userData', JSON.stringify(userName));
+  window.localStorage.setItem('localUserId', JSON.stringify(localUserId));
 
   if(res.ok)
   {

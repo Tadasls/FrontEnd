@@ -1,13 +1,8 @@
-//prisijungimo duomenys
-
+//show username 
 document.addEventListener("DOMContentLoaded", () => {
-    const o = Object.assign({}, JSON.parse(localStorage.getItem('userData')));
-    nulinis.innerHTML = o.userName ?? ``;
-   // setTimeout(() => {
-     // viewData();
-   // }, 1000);
-  });
-  
+  const o = Object.assign({}, JSON.parse(localStorage.getItem('userData')));
+  nulinis.innerHTML = o.userName ?? ``;
+});
 
 
 
