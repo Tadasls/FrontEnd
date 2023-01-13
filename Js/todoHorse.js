@@ -75,7 +75,7 @@ userFormSbmBtn.addEventListener("click", (e) => {
 
 const userViewFormSbmBtn = document.querySelector("#user-view-submit");
 
-  const url = "https://localhost:7134/api/Notification/GetAllNotifications";
+  const url = "https://localhost:7134/api/Horse/GetAllHorses";
   const options = {
     method: "get",
     headers: {
@@ -95,9 +95,9 @@ const userViewFormSbmBtn = document.querySelector("#user-view-submit");
       a.forEach((element) => {
         console.log(element);
         let filtruojamiDuomuo 
-        = `<tr><td> ${element.notificationID}</td>
-               <td>${element.topic}</td>
-               <td>${element.message}</td>
+        = `<tr><td> ${element.horseID}</td>
+               <td>${element.horseName}</td>
+               <td>${element.ownerName}</td>
      
       </tr>`;
         tarpas = `<hr>`;
@@ -235,6 +235,37 @@ function showForm() {
     editforma.style.display == "none" ? "block" : "none";
 }
 
+// add_actions.addEventListener('click', (e) => {
+// document.querySelector('#SpecVieta').innerHTML = VeiksmuMeniu[0].AVeiksmas;
+
+// })
+
+// const VeiksmuMeniu = [
+//   {
+//     AVeiksmas: `<div class="edit">
+//     CREATE & EDIT & DELETE
+//     <br /><br />
+//     <form id="user-edit-form">
+//       <label for="name">Id</label>
+//       <input type="number" name="id" id="id" /> <br /><br />
+//       <label for="type">Type</label>
+//       <input type="text" name="type" id="type" placeholder="Pranšimo Tipas" />
+//       <br /><br />
+//       <label for="content">Content</label>
+//       <input type="text" name="content" id="content" placeholder="Jūsų pranešimo turinys" />
+//       <br /><br />
+//       <label for="endDate">EndDate</label>
+//       <input type="text" name="endDate" id="endDate" placeholder="Galiojimo data" />
+//       <br /><br />
+//       <input type="button" id="user-create-submit" value="Įrašyti" />
+//       <input type="button" id="user-edit-form-submit" value="Atnaujinti" />
+//       <input type="button" id="user-delete-submit" value="Trinti">
+//     </form>
+//   </div>`,
+//   }
+//   ,
+//   {}
+// ];
 
 //validacijos papildomai trinymui
 
@@ -309,7 +340,7 @@ function filter() {
   var rows = names.getElementsByTagName("tr");
 
   for (i = 0; i < rows.length; i++) {
-    let column = rows[i].getElementsByTagName("td")[1];
+    let column = rows[i].getElementsByTagName("td")[2];
     let language = column.textContent;
 
     rows[i].style.display =

@@ -75,7 +75,7 @@ userFormSbmBtn.addEventListener("click", (e) => {
 
 const userViewFormSbmBtn = document.querySelector("#user-view-submit");
 
-  const url = "https://localhost:7134/api/Notification/GetAllNotifications";
+  const url = "https://localhost:7134/api/Entry/GetAllEntries";
   const options = {
     method: "get",
     headers: {
@@ -95,9 +95,9 @@ const userViewFormSbmBtn = document.querySelector("#user-view-submit");
       a.forEach((element) => {
         console.log(element);
         let filtruojamiDuomuo 
-        = `<tr><td> ${element.notificationID}</td>
-               <td>${element.topic}</td>
-               <td>${element.message}</td>
+        = `<tr><td> ${element.entryID}</td>
+               <td>${element.horseName}</td>
+               <td>${element.riderFullName}</td>
      
       </tr>`;
         tarpas = `<hr>`;
@@ -309,7 +309,7 @@ function filter() {
   var rows = names.getElementsByTagName("tr");
 
   for (i = 0; i < rows.length; i++) {
-    let column = rows[i].getElementsByTagName("td")[1];
+    let column = rows[i].getElementsByTagName("td")[2];
     let language = column.textContent;
 
     rows[i].style.display =

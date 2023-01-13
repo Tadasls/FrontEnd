@@ -1,148 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ToDoApp</title>
+    <link rel="stylesheet" href="/Css/main.css">
+    <link rel="stylesheet" href="/Css/todo.css">
     <link rel="stylesheet" href="/Css/timer.css">
-    <title>Stopwatch</title>
-</head>
-<body>
+    <link rel="shortcut icon" href="img/favicon.ico">
+  </head>
 
 
-  <div id="timer">Time elapsed: 0 minutes 0 seconds 0 milliseconds</div>
-  <button id="start-button" onclick="start()">Start</button>
-  <button id="stop-button" onclick="stopTimer()">Stop</button>
-  <button id="reset-button" onclick="resetTimer()">Reset</button>
 
-
+  <body>
+    <main class="container main-class">
+      <header class="main-header"> </header>
+    <div class="container-row-space-between-justify">
+      <div> 
+      <div style = "height: 20px; width: 200px; background-color: rgb(10, 1, 80); border-top-left-radius: 10px 10px; color: white" >
+      </div>
+      <div style = "height: 100%; width: 200px; border-bottom-left-radius: 50px 50px; background-color: rgb(10, 1, 80); color: white" >
+        <p> 
+        <h2>Competition Events Manager v1.01<br> </h2>
+        <hr>
+        <h3 style = "margin: 5px; padding: 5px;">
+          Welcome : 
+        </h3>
+        <hr>
+        <div style = "flex-wrap: wrap;" class="meniu">
+          <div>
+            <div>User:</div> <div id="nulinis" style="width: 100px;"> 1</div> 
+          </div>
    
-  <script>
-    var milliseconds = 0;
-    var seconds = 0;
-    var minutes = 0;
-    var timer;
+        </div>
+        <hr />
+        <div>
+          <form action="todo.html" class="mygtukai">
+            <button type="submit">Main</button>
+          </form>
+          <form action="todoHorse.html" class="mygtukai">
+            <button type="submit">Horses</button>
+          </form>
+          <form action="todoRider.html" class="mygtukai">
+            <button type="submit">Riders</button>
+          </form>
+          <form action="todoEntry.html" class="mygtukai" >
+            <button type="submit">Entries</button>
+          </form>
+          <form action="todoEvent.html" class="mygtukai">
+            <button type="submit">Events</button>
+          </form>
 
-    running = false;
-
-    function start() {
-      if (this.running) {
-        throw new Error("Stopwatch has already started.");
-      } else 
-      {
-        startTimer();
-        function startTimer() {
-          running = true;
-        timer = setInterval(function() {
-            milliseconds++;
-            if (milliseconds === 100) {
-                milliseconds = 0;
-                seconds++;
-            }
-            if (seconds === 60) {
-                seconds = 0;
-                minutes++;
-            }
-            document.getElementById("timer").innerHTML = "Timer: " + minutes + " min " + seconds + " sec " + milliseconds + " millisec";
-        }, 10);
+        </div>
 
 
 
-      }
-    
-    }
-  }
+        <hr />
+        
+        <br>
+        <div style = "flex-wrap: wrap; display: flex; margin-left: 30px;" >
+          <form action="index.html" class="mygtukai">
+            <button type="submit">Atsijungti</button>
+          </form>
+          <br>
+        
+        </div>
+      
+
+      </p>
+      </div>
+      </div>
+
+      <div>
+          <div style = "height: 20px; width: 600px; background-color: #f7f7f7; border-top-right-radius: 20px;" >
+            <p style= "font-size: small; padding: 10px;"></p>
+          </div>
+          <div style = "height: 100%; width: 600px; background-color: #f7f7f7" >
+            <h2>CEM Timing System</h2>
+            <hr>
+
+                      <div class="app" style = "margin: 5px;">
+                   
+
+                      <div id="timer">Time elapsed: 0 minutes 0 seconds 0 milliseconds</div>
+                      <button id="start-button" onclick="start()">Start</button>
+                      <button id="stop-button" onclick="stopTimer()">Stop</button>
+                      <button id="reset-button" onclick="resetTimer()">Reset</button>
+
+                    </div>
+                                       
+                  
 
 
+          </div>
 
-    function stopTimer() {
-        clearInterval(timer);
-        running = false;
-    }
-
-    function resetTimer() {
-        stopTimer();
-        milliseconds = 0;
-        seconds = 0;
-        minutes = 0;
-        document.getElementById("timer").innerHTML = "Time: 0 min 0 sec 0 millisec";
-        running = false;
-   }
-</script>
+      </div>  
+  </div>
+ </div>
 
 
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 
-
-
-   <br>
-   <div id="timer">Time elapsed: 0 seconds</div>
-   <button onclick="startTimer()">Start</button>
-   <button onclick="stopTimer()">Stop</button>
-   <button onclick="resetTimer()">Reset</button>
-
-
-    <script>
-      var seconds = 0;
-      var miliseconds = 0;
-      var timer;
-  
-      function startTimer() {
-          timer = setInterval(function() 
-          {
-              seconds++;
-              document.getElementById("timer").innerHTML = "Time elapsed: " + seconds + " seconds";
-          }, 1000);
-      }
-  
-      function stopTimer() {
-          clearInterval(timer);
-      }
-  
-      function resetTimer() {
-          stopTimer();
-          seconds = 0;
-          document.getElementById("timer").innerHTML = "Time elapsed: 0 seconds";
-      }
-  </script> -->
-  
-
-  <!-- <div id="stopwatch"></div>
-  <br>
- <br>
-  <button id="startBtn">Start</button>
-  <button id="stopBtn">Stop</button>
-  <button id="resetBtn">Reset</button> -->
-
-
-<!-- <script src="/js/timer.js"></script> -->
 
 
     
-</body>
+<footer id = "copyright" style  = "text-align: right;" >Copyright &copy; 2023 Tadas Laurinaitis</footer>
+   <script src="/js/timer.js"></script>
+  </body>
 </html>
+
+
+  
+    
+    
+      
+    
+      
+      

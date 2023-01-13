@@ -37,7 +37,7 @@ function start() {
 //view list of all events
 const userViewFormSbmBtn = document.querySelector("#user-view-submit");
 
-  const url = "https://localhost:7134/api/Horse/Horses";
+  const url = "https://localhost:7134/api/Event/GetAllEvents";
   const options = {
     method: "get",
     headers: {
@@ -55,11 +55,11 @@ const userViewFormSbmBtn = document.querySelector("#user-view-submit");
          let visiDuomenys = "";
   
       a.forEach((element) => {
-       // console.log(element);
+        console.log(element);
         let filtruojamiDuomuo 
-        = `<tr><td> ${element.horseID}</td>
-               <td>${element.horseName}</td>
-               <td>${element.ownerName}</td>
+        = `<tr><td> ${element.place}</td>
+               <td>${element.title}</td>
+               <td>${element.country}</td>
      
       </tr>`;
         tarpas = `<hr>`;
@@ -94,7 +94,7 @@ function filter() {
   var rows = names.getElementsByTagName("tr");
 
   for (i = 0; i < rows.length; i++) {
-    let column = rows[i].getElementsByTagName("td")[2];
+    let column = rows[i].getElementsByTagName("td")[1];
     let language = column.textContent;
 
     rows[i].style.display =

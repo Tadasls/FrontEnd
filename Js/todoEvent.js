@@ -3,9 +3,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const o = Object.assign({}, JSON.parse(localStorage.getItem('userData')));
   nulinis.innerHTML = o.userName ?? ``;
-  //pirmas.innerHTML = o.regUserName ?? ``;
- // antras.innerHTML = o.regUserLastname ?? ``;
-  //trecias.innerHTML = o.regUserName ??``;
+
  // setTimeout(() => {
    // viewData();
  // }, 1000);
@@ -75,7 +73,7 @@ userFormSbmBtn.addEventListener("click", (e) => {
 
 const userViewFormSbmBtn = document.querySelector("#user-view-submit");
 
-  const url = "https://localhost:7134/api/Notification/GetAllNotifications";
+  const url = "https://localhost:7134/api/Event/GetAllEvents";
   const options = {
     method: "get",
     headers: {
@@ -95,9 +93,10 @@ const userViewFormSbmBtn = document.querySelector("#user-view-submit");
       a.forEach((element) => {
         console.log(element);
         let filtruojamiDuomuo 
-        = `<tr><td> ${element.notificationID}</td>
-               <td>${element.topic}</td>
-               <td>${element.message}</td>
+        = `<tr><td> ${element.eventID}</td>
+               <td>${element.title}</td>
+               <td>${element.place}</td>
+               <td>${element.country}</td>
      
       </tr>`;
         tarpas = `<hr>`;
@@ -234,6 +233,7 @@ function showForm() {
   document.getElementById("editforma").style.display =
     editforma.style.display == "none" ? "block" : "none";
 }
+
 
 
 //validacijos papildomai trinymui

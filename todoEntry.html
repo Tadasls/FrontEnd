@@ -24,7 +24,7 @@
         <h2>Competition Events Manager v1.01<br> </h2>
         <hr>
         <h3 style = "margin: 5px; padding: 5px;">
-          Sveiki Prisijungę : 
+          Welcome : 
         </h3>
         <hr>
         <div style = "flex-wrap: wrap;" class="meniu">
@@ -46,20 +46,19 @@
           <form action="todoRider.html" class="mygtukai">
             <button type="submit">Riders</button>
           </form>
-          <form action="todoEntry.html" class="mygtukai" >
-            <button type="submit">Entries</button>
-          </form>
           <form action="todoEvent.html" class="mygtukai">
             <button type="submit">Events</button>
           </form>
-
+          <form action="timer.html" class="mygtukai">
+            <button type="submit">Timer</button>
+          </form>
         </div>
         <hr />
         
         <br>
         <div style = "flex-wrap: wrap; display: flex; margin-left: 30px;" >
           <form action="index.html" class="mygtukai">
-            <button type="submit">Atsijungti</button>
+            <button type="submit">Logout</button>
           </form>
           <br>
           <form class="mygtukai"> 
@@ -102,21 +101,21 @@
             </div>
 
                       <div class="app" style = "margin: 5px;">
-                      <input type="text" id="searchInput" placeholder="iveskite turinio filtravimo kriterijus...">
+                      <input type="text" id="searchInput" placeholder="Filter by Rider...">
                 
                       <table>
                         <thead>
                           <tr>
-                            <th>HorseId</th>
-                            <th>HorseName</th>
-                            <th>OwnerName</th>
+                            <th>Id</th>
+                            <th>Horse</th>
+                            <th>Rider</th>
                           </tr>
                         </thead>
                         <tbody id="names">
                          
                         </tbody>
                       </table>
-                      <input type="button" id="user-view-submit" value="Gauti duomenis" style="margin: 5px;"/>
+                      <input type="button" id="user-view-submit" value="View data" style="margin: 5px;"/>
                     </div>
                                        
                   
@@ -133,7 +132,7 @@
 
     
 <footer id = "copyright" style  = "text-align: right;" >Copyright &copy; 2023 Tadas Laurinaitis</footer>
-    <script src="/js/todo.js"></script>
+    <script src="/js/todoEntry.js"></script>
   </body>
 </html>
 
