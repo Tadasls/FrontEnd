@@ -51,11 +51,11 @@ const userViewFormSbmBtn = document.querySelector("#user-view-submit");
     fetch(url, options)
       .then((response) => response.json())
       .then((a) => {
-         console.log(a);
+       //  console.log(a);
          let visiDuomenys = "";
   
       a.forEach((element) => {
-        console.log(element);
+      //  console.log(element);
         let filtruojamiDuomuo 
         = `<tr><td> ${element.place}</td>
                <td>${element.title}</td>
