@@ -190,7 +190,7 @@ dataFormSbmBtn.addEventListener("click", (e) => {
 });
 
 
-//delete
+//delete function
 function sendDataDel() {
   let data = new FormData(dataForm);
   let obj = {};
@@ -212,6 +212,8 @@ function sendDataDel() {
       console.log(`Request failed with error: ${error}`);
     });
 }
+
+//delete button
 
 userDelFormSbmBtn.addEventListener("click", (e) => {
   e.preventDefault();
