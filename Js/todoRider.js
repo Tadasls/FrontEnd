@@ -30,9 +30,8 @@ document.getElementById("searchInput").addEventListener("keyup", filter);
 
 //validation
 const arUzpyldytiVartDuomenis = () => {
-  if (!HorseName.value) return false;
-  if (!OwnerName.value) return false;
-  if (!YearOfBird.value) return false;
+  if (!FirstName.value) return false;
+  if (!LastName.value) return false;
 
   return true;
 };
@@ -40,6 +39,7 @@ const arUzpildytiIdData = () => {
   if (!id.value) return false;
   return true;
 };
+
 
 // const Variables
 
@@ -53,6 +53,7 @@ const errorEle = document.querySelector(".error-message");
 const urlGet = "https://localhost:7134/GetAllRidersForUser/"+userID.userID;
 const urlCreate = "https://localhost:7134/api/Rider/CreateRider";
 const urlDel = "https://localhost:7134/api/Rider/riders/delete/";
+const urlUpdate = "https://localhost:7134/api/Rider/riders/update/";
 
 const optionsGet = {
     method: "get",
@@ -78,7 +79,7 @@ const response = {};
     fetch(urlGet, optionsGet)
       .then((response) => response.json())
       .then( async a => {
-         console.log(a);
+       //  console.log(a);
          let visiDuomenys = "";
   
       a.forEach((element) => {
@@ -150,13 +151,14 @@ userFormSbmBtn.addEventListener("click", (e) => {
 
 function editData() {
   let data = new FormData(dataForm);
+  console.log(data)
   let obj = {};
 
   data.forEach((value, key) => {
     obj[key] = value
 });
-const urlUpdate = "https://localhost:7134/api/Rider/riders/update/"+obj.id;
-  fetch(urlUpdate, {
+
+  fetch(urlUpdate+obj.id, {
     method: "put",
     headers: {
       Accept: "application/json",

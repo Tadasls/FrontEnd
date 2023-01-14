@@ -13,7 +13,7 @@ function sendData() {
   let data = new FormData(loginForm);
   let obj = {};
 
-  console.log(data);
+ // console.log(data);
 
   data.forEach((value, key) => {
       obj[key] = value
@@ -30,9 +30,8 @@ fetch(postURL, {
   body: JSON.stringify(obj) 
 })
 .then(async res => {
-  console.log(res.status);
-
-  console.log(res);
+ // console.log(res.status);
+ // console.log(res);
 
   var resBody = await res.json();
 

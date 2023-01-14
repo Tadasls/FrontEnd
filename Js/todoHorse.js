@@ -52,6 +52,8 @@ const errorEle = document.querySelector(".error-message");
 const urlGet = "https://localhost:7134/GetAllHorses/"+userID.userID;
 const urlCreate = "https://localhost:7134/api/Horse/CreateHorse";
 const urlDel = "https://localhost:7134/api/Horse/Horses/delete/";
+const urlUpdate = "https://localhost:7134/api/Horse/Horses/update/";
+
 
 const optionsGet = {
     method: "get",
@@ -153,8 +155,8 @@ function editData() {
   data.forEach((value, key) => {
     obj[key] = value
 });
-const urlUpdate = "https://localhost:7134/api/Horse/Horses/update/"+obj.id;
-  fetch(urlUpdate, {
+
+  fetch(urlUpdate+obj.id, {
     method: "put",
     headers: {
       Accept: "application/json",

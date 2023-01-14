@@ -74,23 +74,36 @@
             <hr>
 
             <div class="edit" id = "editforma" style = "display:none">
-              MENIU for CREATE & EDIT & DELETE
-              <br /><br />
-              <form id="user-edit-form">
-                <label for="name">Id</label>
-                <input type="number" name="id" id="id" /> <br /><br />
-                <label for="type">Type</label>
-                <input type="text" name="type" id="type" placeholder="Pranešimo Tipas" />  
+                       <form id="user-edit-form">
+
+
+                <label for="EntryID">EntryID</label>
+                <input type="number" name="EntryID" id="EntryID" /> <br /><br />
+
+                <label for="HorseID">HorseID</label>
+                <input type="number" name="HorseID" id="HorseID" placeholder="HorseID" />  
                 <br /><br />
-                <label for="content">Content</label>
-                <textarea  rows="2" cols="18" name="content" id="content" placeholder="Jūsų pranešimo turinys" ></textarea>
+
+                <label for="RiderID">RiderID</label>
+                <input type="number" name="RiderID" id="RiderID" placeholder="RiderID" />
                 <br /><br />
-                <label for="endDate">EndDate</label>
-                <input type="date" name="endDate" id="endDate" placeholder="Galiojimo data" />
+
+                <label for="CId">CId</label>
+                <input type="number" name="CId" id="CId" placeholder="CId" />
                 <br /><br />
+                 <label for="Points">Points</label>
+                <input type="number" name="Points" id="Points" placeholder="Points" />
+                <br /><br />
+<!--                 
+                <label for="Time">Time</label>
+                <input type="number" name="Time" id="Time" placeholder="Time" />
+                <br /><br />  -->
+
+
                 <input type="button" id="user-create-submit" value="Add" />
                 <input type="button" id="user-edit-form-submit" value="Update" />
                 <input type="button" id="user-delete-submit" value="Delete">
+                <p class="error-message"></p>
               </form>
             </div>
 
@@ -101,8 +114,11 @@
                         <thead>
                           <tr>
                             <th>Id</th>
-                            <th>Horse</th>
-                            <th>Rider</th>
+                            <th>HorseID</th>
+                            <th>RiderID</th>
+                            <th>CID</th>
+                            <th>Points</th>
+                            <th>Time</th>
                           </tr>
                         </thead>
                         <tbody id="names">

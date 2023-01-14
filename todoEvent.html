@@ -73,23 +73,39 @@
             <hr>
 
             <div class="edit" id = "editforma" style = "display:none">
-              MENIU for CREATE & EDIT & DELETE
-              <br /><br />
+             
+
+
+
               <form id="user-edit-form">
-                <label for="name">Id</label>
-                <input type="number" name="id" id="id" /> <br /><br />
-                <label for="type">Type</label>
-                <input type="text" name="type" id="type" placeholder="Pranešimo Tipas" />  
+
+                <label for="EventID">EventID</label>
+                <input type="number" name="EventID" id="EventID" /> <br /><br />
+
+                <label for="Title">Title</label>
+                <input type="text" name="Title" id="Title" placeholder="Title" />  
                 <br /><br />
-                <label for="content">Content</label>
-                <textarea  rows="2" cols="18" name="content" id="content" placeholder="Jūsų pranešimo turinys" ></textarea>
+
+                <label for="Place">Place</label>
+                <input type="text" name="Place" id="Place" placeholder="Place" />
                 <br /><br />
-                <label for="endDate">EndDate</label>
-                <input type="date" name="endDate" id="endDate" placeholder="Galiojimo data" />
+
+                <label for="Country">Country</label>
+                <input type="text" name="Country" id="Country" placeholder="Country" />
                 <br /><br />
+
+                <label for="Organizer">Organizer</label>
+                <input type="text" name="Organizer" id="Organizer" placeholder="Organizer" />
+                <br /><br />
+                
+                <label for="Date">Date</label>
+                <input type="date" name="Date" id="Date" placeholder="Date" />
+                <br /><br />
+
                 <input type="button" id="user-create-submit" value="Add" />
                 <input type="button" id="user-edit-form-submit" value="Update" />
                 <input type="button" id="user-delete-submit" value="Delete">
+                <p class="error-message"></p>
               </form>
             </div>
 
@@ -113,8 +129,6 @@
                     </div>
                                        
                   
-
-
           </div>
 
       </div>  

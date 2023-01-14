@@ -76,19 +76,63 @@
                               
                       <div class="app" style = "margin: 5px;">
                    
-                      <div id="timer">Time elapsed: 0 minutes 0 seconds 0 milliseconds</div>
-                     
+                        <div>
+                          <div id="timer">
+                            Time: 0 min 0 sec 0 millisec
+                          </div>
 
+                          <div id="points">
+                            Penalty points: 
+                          </div>
+
+                        
+                  
                       <ul class="flex-container">
                         <button id="start-button" onclick="start()">Start</button>
                         <button id="stop-button" onclick="stopTimer()">Stop</button>
                         <button id="reset-button" onclick="resetTimer()">Reset</button>
-                      </ul>
+                        <button id="add-button" onclick="showPoints()">+4 P</button>
+                        <button id="clear-button" onclick="clearPoints()">Clear</button>
+                        
+                        <div>
+                          <div>
+                            <br>
+                            <form id="user-edit-form">
+     
+     
+                     <label for="EntryID">EntryID</label>
+                     <input type="number" name="EntryID" id="EntryID" /> <br /><br />
+     
+     
+                     <label for="CId">CId</label>
+                     <input type="number" name="CId" id="CId" placeholder="CId" />
+                     <br /><br />
+
+                      <label for="Points">Points</label>
+                     <input type="number" name="Points" id="Points" placeholder="Points" />
+                     <br /><br />
+                     
+                     <label for="Time">Time</label>
+                     <input type="number" name="Time" id="Time" placeholder="Time" />
+                     <br /><br /> 
+     
+                     <input type="button" id="user-edit-form-submit" value="Write Results" />
+                   
+                     <p class="error-message"></p>
+                   </form>
+                 </div>
+
+                        </div>
+
+                      </div> 
+
+                    
+                        
                       
-                      
+                                      
 
                       
-                      </div> 
+                  
                     
 
                     

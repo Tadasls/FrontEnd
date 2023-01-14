@@ -3,16 +3,21 @@ document.addEventListener("DOMContentLoaded", () => {
   const o = Object.assign({}, JSON.parse(localStorage.getItem('userData')));
   nulinis.innerHTML = o.userName ?? ``;
 });
+//meniu unhide
+add_actions.addEventListener("click", showForm);
+function showForm() {
+  document.getElementById("editforma").style.display =
+    editforma.style.display == "none" ? "block" : "none";
+}
 
-//filtravimas
-
+//data view filter
 function filter() {
   let value = document.getElementById("searchInput").value.toUpperCase();
   var names = document.getElementById("names");
   var rows = names.getElementsByTagName("tr");
 
   for (i = 0; i < rows.length; i++) {
-    let column = rows[i].getElementsByTagName("td")[2];
+    let column = rows[i].getElementsByTagName("td")[3];
     let language = column.textContent;
 
     rows[i].style.display =
@@ -23,13 +28,36 @@ document.getElementById("searchInput").addEventListener("keyup", filter);
 
 
 
-//view all for one user
+//validation
+const arUzpyldytiVartDuomenis = () => {
+  if (!HorseID.value) return false;
+  if (!RiderID.value) return false;
+  if (!CId.value) return false;
+
+  return true;
+};
+const arUzpildytiIdData = () => {
+  if (!EntryID.value) return false;
+  return true;
+};
+
+
+// const Variables
 
 const userID = JSON.parse(localStorage.getItem('localUserId'));
 const userViewFormSbmBtn = document.querySelector("#user-view-submit");
+const userFormSbmBtn = document.querySelector("#user-create-submit");
+const dataFormSbmBtn = document.querySelector("#user-edit-form-submit");
+const userDelFormSbmBtn = document.querySelector("#user-delete-submit");
+const dataForm = document.querySelector("#user-edit-form");
+const errorEle = document.querySelector(".error-message");
+const urlGet = "https://localhost:7134/GetAllEntriesForUser/"+userID.userID;;
+const urlCreate = "https://localhost:7134/api/Entry/CreateEntry";
+const urlDel = "https://localhost:7134/api/Entry/Entry/delete/";
+const urlUpdate = "https://localhost:7134/api/Entry/Entrys/update/";
 
-const url = "https://localhost:7134/GetAllEntriesForUser/"+userID.userID;
-  const options = {
+
+const optionsGet = {
     method: "get",
     headers: {
       Accept: "application/json",
@@ -37,21 +65,35 @@ const url = "https://localhost:7134/GetAllEntriesForUser/"+userID.userID;
       'Authorization': 'Bearer ' + window.localStorage.getItem('token')
     },
   };
-  const response = {};
-  
+const optionsDel = {
+    method: "delete",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      'Authorization': 'Bearer ' + window.localStorage.getItem('token')
+    },
+};
+
+const response = {};
+
+//view all for one user
   function viewData() {
-    fetch(url, options)
+    fetch(urlGet, optionsGet)
       .then((response) => response.json())
-      .then((a) => {
+      .then( async a => {
          console.log(a);
          let visiDuomenys = "";
   
       a.forEach((element) => {
-        console.log(element);
+     //   console.log(element);
         let filtruojamiDuomuo 
         = `<tr><td> ${element.entryID}</td>
-               <td>${element.horseName}</td>
-               <td>${element.riderFullName}</td>
+               <td>${element.horseID}</td>
+               <td>${element.riderID}</td>
+               <td>${element.cId}</td>
+               <td>${element.points}</td>
+               <td>${element.time}</td>
+
      
       </tr>`;
         tarpas = `<hr>`;
@@ -60,68 +102,41 @@ const url = "https://localhost:7134/GetAllEntriesForUser/"+userID.userID;
   
       });
       names.innerHTML = visiDuomenys;
-  })
-  }
-
-      
-
-   
-
-
-
-userViewFormSbmBtn.addEventListener("click", (e) => {
-  e.preventDefault();
-  viewData();
-});
-
-
-
-
-
-
-
-//validacijos
-const arUzpyldytiVartDuomenis = () => {
-  if (!type.value) return false;
-  if (!content.value) return false;
-  if (!endDate.value) return false;
-  return true;
-};
-
-const arUzpildytiIdData = () => {
-  if (!id.value) return false;
-  return true;
-};
+    })}
+// view Button funtion
+  userViewFormSbmBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    viewData();
+  });
 
 //create new
-
-const userForm = document.querySelector("#user-edit-form");
-const userFormSbmBtn = document.querySelector("#user-create-submit");
-const user = JSON.parse(localStorage.getItem("UserData"));
-
 function createData() {
-  let data = new FormData(userForm);
+  let data = new FormData(dataForm);
   let obj = {};
-
   data.forEach((value, key) => {
-    obj[key] = value;
-  });
-  obj["userId"] = user.ID;
-
-  // fetch("https://testapi.io/api/Tadasls/resource/TLSusersDuomenys",
-  fetch("https://localhost:7125/api/data/create",
+    obj[key] = value
+});
+  fetch(urlCreate,
    {
     method: "post",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
+      'Authorization': 'Bearer ' + window.localStorage.getItem('token')
     },
     body: JSON.stringify(obj),
   })
-    .then((obj) => console.log(obj.json()))
-    .catch((error) => console.log(error));
+  .then(async res => {
+    if(res.ok)
+    {
+      window.alert(`Data added `);
+    }
+    var resBody = await res.json();
+    errorEle.textContent = resBody.message;
+})
+.catch((err) => console.log(err));
 }
-
+// add button function
 userFormSbmBtn.addEventListener("click", (e) => {
   e.preventDefault();
   if (arUzpyldytiVartDuomenis()) {
@@ -137,97 +152,70 @@ userFormSbmBtn.addEventListener("click", (e) => {
 });
 
 
-
-//edit data
-
-const dataForm = document.querySelector("#user-edit-form");
-const dataFormSbmBtn = document.querySelector("#user-edit-form-submit");
+//edit data implementation
 
 function editData() {
+  let data = new FormData(dataForm);
+  console.log(data)
+  let obj = {};
+
+  data.forEach((value, key) => {
+    obj[key] = value
+});
+
+console.log(obj.EntryID)
+  fetch(urlUpdate+obj.EntryID,{
+    method: "put",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      'Authorization': 'Bearer ' + window.localStorage.getItem('token')
+    },
+    body: JSON.stringify(obj),
+  })
+  .then(async res => {
+    if(res.ok)
+    {
+      window.alert("data updated");
+    }
+    console.log(res);
+    var resBody = await res.json();
+    errorEle.textContent = resBody.message;
+})
+.catch((err) => console.log(err));
+}
+
+dataFormSbmBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  if (arUzpildytiIdData()) {
+    editData();
+    setTimeout(() => {
+      viewData();
+    }, 1000);
+  } else {
+    {
+      window.alert("Form data is not fully entered");
+    }
+  }
+});
+
+
+//delete function
+function sendDataDel() {
   let data = new FormData(dataForm);
   let obj = {};
 
   data.forEach((value, key) => {
     obj[key] = value;
   });
-  obj["userId"] = user.ID;
-
-  const url =
-    // "https://testapi.io/api/Tadasls/resource/TLSusersDuomenys/" + obj.id;
-    "https://localhost:7125/api/data/update/" + obj.id;
-
-  fetch(url, {
-    method: "put",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(obj),
-  })
-    .then((obj) => {
-      const res = obj.json();
-      console.log(res);
-      return res;
-    })
-    .catch((klaida) => console.log(klaida));
-}
-
-dataFormSbmBtn.addEventListener("click", (e) => {
-  e.preventDefault();
-  if (arUzpyldytiVartDuomenis() && arUzpildytiIdData()) {
-    irasasRastas2Edit = false;
-    validateDataEditinimui();
-    setTimeout(() => {
-      viewData();
-    }, 1000);
-  } else {
-    {
-      window.alert("Duomenis nėra pilnai užpildyti");
-    }
-  }
-});
-
-//delete
-const userDelForm = document.querySelector("#user-edit-form");
-const userDelFormSbmBtn = document.querySelector("#user-delete-submit");
-
-function sendDataDel() {
-  let data = new FormData(userDelForm);
-  let obj = {};
-
-  data.forEach((value, key) => {
-    obj[key] = value;
-  });
-
-  const urlDel =
-    "https://localhost:7125/api/data/delete/" + obj.id;
-    // "https://testapi.io/api/Tadasls/resource/TLSusersDuomenys/" + obj.id;
-  const urlFetch =
-    "https://localhost:7125/api/data/data/" + obj.id;
-    // "https://testapi.io/api/Tadasls/resource/TLSusersDuomenys/" + obj.id;
-  const optionsFetch = {
-    method: "get",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-  };
-  const optionsDel = {
-    method: "delete",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-  };
-
-  fetch(urlFetch, optionsFetch)
+  fetch(urlGet, optionsGet)
     .then((response) => response.json())
     .then((a) => {
-      return fetch(urlDel, optionsDel);
+      return fetch(urlDel+obj.EntryID, optionsDel);
     })
     .then((obj) => {
-      const res = obj; //.json()
-      console.log(res);
+      const res = obj;
+      console.log(res)
       return res;
     })
     .catch((error) => {
@@ -235,87 +223,19 @@ function sendDataDel() {
     });
 }
 
+//delete button
+
 userDelFormSbmBtn.addEventListener("click", (e) => {
   e.preventDefault();
   if (arUzpildytiIdData()) {
-    if (confirm(`Ištrinti? ${id.value} Įrašą`) == true) {
-      irasasRastas = false;
-      validateDataTrynimiui();
+    if (confirm(`Delete? ${EntryID.value} entry`) == true) {
+      sendDataDel();
+      window.alert("data deleted");
+      setTimeout(() => {
+        viewData();
+      }, 1000);
     }
   } else {
-    window.alert("Nėra pasirinktas trinamo elemento Id");
+    window.alert("No such element with Id");
   }
 });
-
-add_actions.addEventListener("click", showForm);
-function showForm() {
-  document.getElementById("editforma").style.display =
-    editforma.style.display == "none" ? "block" : "none";
-}
-
-
-//validacijos papildomai trinymui
-
-const userON = JSON.parse(localStorage.getItem("UserData"));
-// const url2 = "https://testapi.io/api/Tadasls/resource/TLSusersDuomenys";
-const url2 = "https://localhost:7125/api/data/get";
-const options2 = {
-  method: "get",
-  headers: {
-    Accept: "application/json",
-    "Content-Type": "application/json",
-  },
-};
-const response2 = {};
-
-let irasasRastas = false;
-function validateDataTrynimiui() {
-  fetch(url2, options2)
-    .then((response) => response.json())
-    .then((informacija) => {
-      for (const pranesimas of informacija) {
-        if (pranesimas.userId === userON.ID) {
-          if (pranesimas.id == id.value) {
-            irasasRastas = true;
-          }
-        }
-      }
-      if (irasasRastas) {
-        sendDataDel();
-        window.alert("Įrašas ištrintas");
-        setTimeout(() => {
-          viewData();
-        }, 1000);
-      } else {
-        window.alert("Tokio įrašo nėra");
-      }
-    });
-}
-
-//validacijos papildomai editui
-
-let irasasRastas2Edit = false;
-function validateDataEditinimui() {
-  fetch(url2, options2)
-    .then((response) => response.json())
-    .then((informacija) => {
-      for (const pranesimas of informacija) {
-        if (pranesimas.userId === userON.ID) {
-          if (pranesimas.id == id.value) {
-            irasasRastas2Edit = true;
-          }
-        }
-      }
-      if (irasasRastas2Edit) {
-        editData();
-
-        window.alert("Įrašas pakoreguotas");
-        setTimeout(() => {
-          viewData();
-        }, 1000);
-      } else {
-        window.alert("Tokio įrašo nėra");
-      }
-    });
-}
-
