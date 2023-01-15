@@ -1,8 +1,15 @@
-//show username 
+//show username and if no user logout
 document.addEventListener("DOMContentLoaded", () => {
   const o = Object.assign({}, JSON.parse(localStorage.getItem('userData')));
   nulinis.innerHTML = o.userName ?? ``;
+  if (!o.userName) {
+    alert('No Access. Please Log in');
+    window.location.href = "login.html";}
+    setTimeout(() => {
+      viewData();
+    }, 1000);
 });
+
 
 //data view filter
 
@@ -36,16 +43,12 @@ const url = "https://localhost:7134/GetAllNotificationsForUser/"+userID.userID;
     },
   };
   const response = {};
-  
   function viewData() {
     fetch(url, options)
       .then((response) => response.json())
       .then((a) => {
-       //  console.log(a);
          let visiDuomenys = "";
-  
       a.forEach((element) => {
-      //  console.log(element);
         let filtruojamiDuomuo 
         = `<tr><td> ${element.notificationID}</td>
                <td>${element.topic}</td>

@@ -1,0 +1,86 @@
+#new-registration-form {
+    display: flex;
+    flex-direction: column; /* sets the direction of the flex items to be in a column */
+    margin-left: 20px ;
+  }
+  
+  #new-registration-form label {
+    width: 50px;
+    margin-bottom: 2px;
+  }
+  
+  #new-registration-form input[type="text"],
+  #new-registration-form input[type="password"],
+  #new-registration-form input[type="email"] {
+    width: 200px;
+    padding: 2px 8px;
+    margin: 4px 0;
+    box-sizing: border-box;
+  }
+  
+  #new-registration-form input[type="button"] {
+    width: 150px;
+    background-color: #183cb1;
+    color: white;
+    padding: 6px 10px;
+    margin-top: 5px ;
+    margin-left: 25px ;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+
+  #login-form {
+    display: flex;
+    flex-direction: column; /* sets the direction of the flex items to be in a column */
+    margin-left: 20px ;
+  }
+
+  #login-form label {
+    width: 50px;
+    text-align: left;
+    margin-bottom: 2px;
+  }
+  
+  #login-form  input[type="text"],
+  #login-form  input[type="password"],
+  #login-form  input[type="email"] {
+    width: 200px;
+    padding: 2px 8px;
+    margin: 4px 0;
+    box-sizing: border-box;
+  }
+  
+  #login-form input[type="button"] {
+    width: 150px;
+    background-color: #183cb1;
+    color: white;
+    padding: 6px 10px;
+    margin-top: 5px ;
+    margin-left: 25px ;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+
+  .mygtukai button {
+    margin-top: 10px;
+    margin-left: 30px;
+    width: 120px; 
+    height: 22px; /* sets the height of the button */
+    background-color: #183cb1; /* sets the background color of the button */
+    color: white; /* sets the text color of the button */
+    border-radius: 7px; /* gives the button rounded corners */
+    transition: background-color 0.3s ease; /* creates a smooth animation when the button is hovered over */
+  }
+  
+  .mygtukai button:hover {
+    background-color: #8e493e; 
+  }
+
+  div.laikrodis{
+    margin: 10px;   
+    font-size: 14px;
+}

@@ -1,8 +1,18 @@
-//show username 
+//show username and if no user logout
 document.addEventListener("DOMContentLoaded", () => {
   const o = Object.assign({}, JSON.parse(localStorage.getItem('userData')));
   nulinis.innerHTML = o.userName ?? ``;
+  if (!o.userName) {
+    alert('No Access. Please Log in');
+    window.location.href = "login.html";}
+    setTimeout(() => {
+      viewData();
+    }, 1000);
 });
+
+
+
+
 
 //meniu unhide
 add_actions.addEventListener("click", showForm);
@@ -79,11 +89,9 @@ const response = {};
     fetch(urlGet, optionsGet)
       .then((response) => response.json())
       .then( async a => {
-      //   console.log(a);
          let visiDuomenys = "";
   
       a.forEach((element) => {
-     //   console.log(element);
         let filtruojamiDuomuo 
         = `<tr><td> ${element.horseID}</td>
                <td>${element.horseName}</td>
@@ -170,7 +178,6 @@ function editData() {
     {
       window.alert("data updated");
     }
-   // console.log(res);
     var resBody = await res.json();
     errorEle.textContent = resBody.message;
 })
@@ -207,7 +214,6 @@ function sendDataDel() {
     })
     .then((obj) => {
       const res = obj;
-     // console.log(res)
       return res;
     })
     .catch((error) => {

@@ -31,9 +31,6 @@ registrationFormSbmBtn.addEventListener('click', (e) => {
 function sendData() {
     let data = new FormData(registrationForm);
     let obj = {};
-
-    console.log(data);
-
     data.forEach((value, key) => {
         obj[key] = value
     });
@@ -47,9 +44,6 @@ function sendData() {
                body: JSON.stringify(obj) 
     })
     .then(async res => {
-        console.log(res.status);
-              
-        console.log(res);
         var resBody = await res.json();
         errorEle.textContent = resBody.message;
         if(res.ok)
@@ -101,7 +95,7 @@ function arEgzistuojaToksVartotojas() {
               }
       })
       .catch(
-                (klaida) => console.log(klaida)
+                (err) => console.log(err)
         );
     }
 

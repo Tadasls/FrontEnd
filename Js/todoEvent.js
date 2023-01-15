@@ -1,8 +1,15 @@
-//show username 
+//show username and if no user logout
 document.addEventListener("DOMContentLoaded", () => {
   const o = Object.assign({}, JSON.parse(localStorage.getItem('userData')));
   nulinis.innerHTML = o.userName ?? ``;
+  if (!o.userName) {
+    alert('No Access. Please Log in');
+    window.location.href = "login.html";}
+    setTimeout(() => {
+      viewData();
+    }, 1000);
 });
+
 //meniu unhide
 add_actions.addEventListener("click", showForm);
 function showForm() {
@@ -26,8 +33,6 @@ function filter() {
 }
 document.getElementById("searchInput").addEventListener("keyup", filter);
 
-
-
 //validation
 const arUzpyldytiVartDuomenis = () => {
   if (!Title.value) return false;
@@ -40,9 +45,7 @@ const arUzpildytiIdData = () => {
   return true;
 };
 
-
 // const Variables
-
 const userID = JSON.parse(localStorage.getItem('localUserId'));
 const userViewFormSbmBtn = document.querySelector("#user-view-submit");
 const userFormSbmBtn = document.querySelector("#user-create-submit");
@@ -54,7 +57,6 @@ const urlGet = "https://localhost:7134/api/Event/GetAllEvents";
 const urlCreate = "https://localhost:7134/api/Event/CreateEvent";
 const urlDel = "https://localhost:7134/api/Event/Event/delete/";
 const urlUpdate = "https://localhost:7134/api/Event/Events/update/";
-
 
 const optionsGet = {
     method: "get",
@@ -80,18 +82,13 @@ const response = {};
     fetch(urlGet, optionsGet)
       .then((response) => response.json())
       .then( async a => {
-         console.log(a);
          let visiDuomenys = "";
-  
       a.forEach((element) => {
-     //   console.log(element);
         let filtruojamiDuomuo 
         = `<tr><td> ${element.eventID}</td>
                <td>${element.title}</td>
                <td>${element.place}</td>
                <td>${element.country}</td>
-
-     
       </tr>`;
         tarpas = `<hr>`;
         visiDuomenys += tarpas;
@@ -153,13 +150,10 @@ userFormSbmBtn.addEventListener("click", (e) => {
 
 function editData() {
   let data = new FormData(dataForm);
-  console.log(data)
   let obj = {};
-
   data.forEach((value, key) => {
     obj[key] = value
 });
-
   fetch(urlUpdate+obj.EventID, {
     method: "put",
     headers: {
@@ -174,7 +168,6 @@ function editData() {
     {
       window.alert("data updated");
     }
-   // console.log(res);
     var resBody = await res.json();
     errorEle.textContent = resBody.message;
 })
@@ -211,7 +204,6 @@ function sendDataDel() {
     })
     .then((obj) => {
       const res = obj;
-     // console.log(res)
       return res;
     })
     .catch((error) => {

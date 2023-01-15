@@ -1,7 +1,10 @@
-//show username 
+//show username and if no user logout
 document.addEventListener("DOMContentLoaded", () => {
   const o = Object.assign({}, JSON.parse(localStorage.getItem('userData')));
   nulinis.innerHTML = o.userName ?? ``;
+  if (!o.userName) {
+    alert('No Access. Please Log in');
+    window.location.href = "login.html";}
 });
 
 
@@ -97,14 +100,11 @@ const value2 = seconds.valueOf;
 
 function editData() {
   let data = new FormData(dataForm);
-  console.log(data)
   let obj = {};
 
   data.forEach((value, key) => {
     obj[key] = value
 });
-
-console.log(obj.EntryID)
   fetch(urlUpdate+obj.EntryID,{
     method: "put",
     headers: {
@@ -116,20 +116,31 @@ console.log(obj.EntryID)
    
   })
   .then(async res => {
+   // console.log(res.statusText);
     if(res.ok)
     {
-      console.log(points)
       window.alert("data updated");
     }
-    console.log(res);
     var resBody = await res.json();
+   // console.log(resBody);
     errorEle.textContent = resBody.message;
 })
 .catch((err) => console.log(err));
 }
-
+// mygtukas siusti duomenis
 dataFormSbmBtn.addEventListener("click", (e) => {
   e.preventDefault();
-  editData();
+  if (arUzpyldytiVartDuomenis()) {editData();} 
+  else  { window.alert("Duomenis nėra pilnai užpildyti");}
   });
 
+
+
+//validation
+const arUzpyldytiVartDuomenis = () => {
+  if (!EntryID.value) return false;
+  if (!CId.value) return false;
+  if (!Points.value) return false;
+  if (!Time.value) return false;
+  return true;
+};

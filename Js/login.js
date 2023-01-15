@@ -13,8 +13,6 @@ function sendData() {
   let data = new FormData(loginForm);
   let obj = {};
 
- // console.log(data);
-
   data.forEach((value, key) => {
       obj[key] = value
   });
@@ -30,11 +28,8 @@ fetch(postURL, {
   body: JSON.stringify(obj) 
 })
 .then(async res => {
- // console.log(res.status);
- // console.log(res);
 
   var resBody = await res.json();
-
  const userName = {userName: resBody.userName};
  const localUserId = {userID: resBody.id};
 
@@ -57,16 +52,6 @@ fetch(postURL, {
 
 .catch((err) => console.log(err));
 }
-
-
-
-///
-
-  // document.addEventListener('DOMContentLoaded', () => {
-  //   const o = Object.assign({}, JSON.parse(localStorage.getItem('UserData')));
-  //   logFirstName.value = o.regUserName ?? ``;
-
-  // });
 
 
 // saugoja Login formos  formos duomenis i laikina narsykles atminti

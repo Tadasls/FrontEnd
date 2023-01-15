@@ -37,7 +37,7 @@ function start() {
 //view list of all events
 const userViewFormSbmBtn = document.querySelector("#user-view-submit");
 
-  //const url = "https://localhost:7134/api/Event/GetAllEvents";
+
   const url = "https://localhost:7134/api/Entry/EntriesEager2";
   const options = {
     method: "get",
@@ -52,12 +52,12 @@ const userViewFormSbmBtn = document.querySelector("#user-view-submit");
     fetch(url, options)
       .then((response) => response.json())
       .then((a) => {
-       //  console.log(a);
          let allDataToShow = "";
          a.forEach((element) => {
           let parent =`
           <br>
           <tr>
+          <tr bgcolor="lightblue">
                            <td>${element.eventID}</td>
                            <td>${element.place}</td>
                            <td>${element.title}</td>
@@ -66,6 +66,7 @@ const userViewFormSbmBtn = document.querySelector("#user-view-submit");
           allDataToShow += parent;
           let allChildsTableStart = `<tr><td colspan="4">
                                         <table><thead><tr>
+                                       <tr bgcolor=#f0bead>
                                         <th>No</th>
                                         <th>Arena</th>
                                         <th>Title</th>
@@ -91,35 +92,8 @@ const userViewFormSbmBtn = document.querySelector("#user-view-submit");
       })
   }
 
-
-
   document.addEventListener("DOMContentLoaded", () => {
-   
    setTimeout(() => {
      viewData();
    }, );
   });
-
-
-
-
-
-
-
-//filtravimas
-
-function filter() {
-  let value = document.getElementById("searchInput").value.toUpperCase();
-  var names = document.getElementById("names");
-  var rows = names.getElementsByTagName("tr");
-
-  for (i = 0; i < rows.length; i++) {
-    let column = rows[i].getElementsByTagName("td")[1];
-    let language = column.textContent;
-
-    rows[i].style.display =
-      language.toUpperCase().indexOf(value) > -1 ? "" : "none";
-  }
-}
-document.getElementById("searchInput").addEventListener("keyup", filter);
-  

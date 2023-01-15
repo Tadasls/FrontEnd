@@ -1,8 +1,15 @@
-//show username 
+//show username and if no user logout
 document.addEventListener("DOMContentLoaded", () => {
   const o = Object.assign({}, JSON.parse(localStorage.getItem('userData')));
   nulinis.innerHTML = o.userName ?? ``;
+  if (!o.userName) {
+    alert('No Access. Please Log in');
+    window.location.href = "login.html";}
+    setTimeout(() => {
+      viewData();
+    }, 1000);
 });
+
 //meniu unhide
 add_actions.addEventListener("click", showForm);
 function showForm() {
@@ -80,11 +87,9 @@ const response = {};
     fetch(urlGet, optionsGet)
       .then((response) => response.json())
       .then( async a => {
-         console.log(a);
          let visiDuomenys = "";
   
       a.forEach((element) => {
-     //   console.log(element);
         let filtruojamiDuomuo 
         = `<tr><td> ${element.competitionID}</td>
                <td>${element.title}</td>
@@ -155,9 +160,7 @@ userFormSbmBtn.addEventListener("click", (e) => {
 
 function editData() {
   let data = new FormData(dataForm);
-  console.log(data)
   let obj = {};
-
   data.forEach((value, key) => {
     obj[key] = value
 });
@@ -176,7 +179,6 @@ function editData() {
     {
       window.alert("data updated");
     }
-    console.log(res);
     var resBody = await res.json();
     errorEle.textContent = resBody.message;
 })
@@ -213,7 +215,6 @@ function sendDataDel() {
     })
     .then((obj) => {
       const res = obj;
-      console.log(res)
       return res;
     })
     .catch((error) => {

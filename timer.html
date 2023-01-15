@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/Css/main.css">
     <link rel="stylesheet" href="/Css/todo.css">
     <link rel="stylesheet" href="/Css/timer.css">
+    <link rel="stylesheet" href="/Css/reg.css">
     <link rel="shortcut icon" href="img/favicon.ico">
   </head>
 
@@ -40,9 +41,9 @@
             <li><a href="todo.html">Home</a></li>
             <li><a href="todoHorse.html">Horses</a></li>
             <li><a href="todoRider.html">Riders</a></li>
-            <li><a href="todoEntry.html">Entries</a></li>
             <li><a href="todoEvent.html">Events</a></li>
             <li><a href="todoCompetition.html">Competitions</a></li>
+            <li><a href="todoEntry.html">Entries</a></li>
             <li><a class="active" href="timer.html">Timer</a></li>
           </ul>
 
@@ -55,7 +56,7 @@
         <br>
         <div style = "flex-wrap: wrap; display: flex; margin-left: 30px;" >
           <form action="index.html" class="mygtukai">
-            <button type="submit">Atsijungti</button>
+            <button type="submit">LogOut</button>
           </form>
           <br>
         
@@ -110,11 +111,11 @@
                      <br /><br />
 
                       <label for="Points">Points</label>
-                     <input type="number" name="Points" id="Points" placeholder="Points" />
+                     <input type="number" name="Points" id="Points" placeholder="Points" value="0"/>
                      <br /><br />
                      
                      <label for="Time">Time</label>
-                     <input type="number" name="Time" id="Time" placeholder="Time" />
+                     <input type="number" name="Time" id="Time" placeholder="Time" value="0" />
                      <br /><br /> 
      
                      <input type="button" id="user-edit-form-submit" value="Write Results" />
