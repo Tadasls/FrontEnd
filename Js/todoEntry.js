@@ -51,7 +51,8 @@ const dataFormSbmBtn = document.querySelector("#user-edit-form-submit");
 const userDelFormSbmBtn = document.querySelector("#user-delete-submit");
 const dataForm = document.querySelector("#user-edit-form");
 const errorEle = document.querySelector(".error-message");
-const urlGet = "https://localhost:7134/GetAllEntriesForUser/"+userID.userID;;
+//const urlGet = "https://localhost:7134/GetAllEntriesForUser/"+userID.userID;
+const urlGet = "https://localhost:7134/api/Entry/HorsesFromEntriesAsyncFEWDB?id="+userID.userID;
 const urlCreate = "https://localhost:7134/api/Entry/CreateEntry";
 const urlDel = "https://localhost:7134/api/Entry/Entry/delete/";
 const urlUpdate = "https://localhost:7134/api/Entry/Entrys/update/";
@@ -85,12 +86,12 @@ const response = {};
          let visiDuomenys = "";
   
       a.forEach((element) => {
-     //   console.log(element);
+        console.log(element);
         let filtruojamiDuomuo 
         = `<tr><td> ${element.entryID}</td>
-               <td>${element.horseID}</td>
-               <td>${element.riderID}</td>
-               <td>${element.cId}</td>
+               <td>${element.horse.horseName}</td>
+               <td>${element.rider.firstName}</td>
+               <td>${element.competition.title}</td>
                <td>${element.points}</td>
                <td>${element.time}</td>
 
