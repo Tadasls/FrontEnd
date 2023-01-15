@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Events page</title>
+    <title>Competitions page</title>
     <link rel="stylesheet" href="/Css/main.css">
     <link rel="stylesheet" href="/Css/todo.css">
     <link rel="shortcut icon" href="img/favicon.ico">
@@ -37,15 +37,16 @@
         </div>
         <hr />
         <div>
-          <ul>
-            <li><a href="todo.html">Home</a></li>
-            <li><a href="todoHorse.html">Horses</a></li>
-            <li><a href="todoRider.html">Riders</a></li>
-            <li><a class="active" href="todoEvent.html">Events</a></li>
-            <li><a href="todoCompetition.html">Competitions</a></li>
-            <li><a href="todoEntry.html">Entries</a></li>
-            <li><a href="timer.html">Timer</a></li>
-          </ul>
+
+        <ul>
+          <li><a href="todo.html">Home</a></li>
+          <li><a href="todoHorse.html">Horses</a></li>
+          <li><a href="todoRider.html">Riders</a></li>
+          <li><a href="todoEvent.html">Events</a></li>
+          <li><a class="active" href="todoCompetition.html">Competitions</a></li>
+          <li><a href="todoEntry.html">Entries</a></li>
+          <li><a href="timer.html">Timer</a></li>
+        </ul>
         </div>
         <hr />
         
@@ -70,37 +71,38 @@
             <p style= "font-size: small; padding: 10px;"></p>
           </div>
           <div style = "height: 100%; width: 600px; background-color: #f7f7f7" >
-            <h2>Event Management</h2>
+            <h2>Competition Management</h2>
             <hr>
 
             <div class="edit" id = "editforma" style = "display:none">
-             
+                       <form id="user-edit-form">
 
 
-
-              <form id="user-edit-form">
-
-                <label for="EventID">EventID</label>
-                <input type="number" name="EventID" id="EventID" /> <br /><br />
+                <label for="CompetitionID">CompetitionID</label>
+                <input type="int" name="CompetitionID" id="CompetitionID" /> <br /><br />
 
                 <label for="Title">Title</label>
                 <input type="text" name="Title" id="Title" placeholder="Title" />  
                 <br /><br />
 
-                <label for="Place">Place</label>
-                <input type="text" name="Place" id="Place" placeholder="Place" />
+                <label for="Number">Number</label>
+                <input type="text" name="Number" id="Number" placeholder="Number" />
                 <br /><br />
 
-                <label for="Country">Country</label>
-                <input type="text" name="Country" id="Country" placeholder="Country" />
+                <label for="CompetitionType">Type</label>
+                <input type="text" name="CompetitionType" id="CompetitionType" placeholder="CompetitionType" />
                 <br /><br />
-
-                <label for="Organizer">Organizer</label>
-                <input type="text" name="Organizer" id="Organizer" placeholder="Organizer" />
+                 <label for="ArenaType">ArenaType</label>
+                <input type="text" name="ArenaType" id="ArenaType" placeholder="ArenaType" />
                 <br /><br />
-                
-                <label for="Date">Date</label>
-                <input type="date" name="Date" id="Date" placeholder="Date" />
+                <label for="Article">Article</label>
+                <input type="text" name="Article" id="Article" placeholder="Article" />
+                <br /><br />
+                <label for="Class">Class</label>
+                <input type="text" name="Class" id="Class" placeholder="Class" />
+                <br /><br />
+                <label for="EId">EId</label>
+                <input type="number" name="EId" id="EId" placeholder="EId" />
                 <br /><br />
 
                 <input type="button" id="user-create-submit" value="Add" />
@@ -111,15 +113,17 @@
             </div>
 
                       <div class="app" style = "margin: 5px;">
-                      <input type="text" id="searchInput" placeholder="Filter by name ...">
+                      <input type="text" id="searchInput" placeholder="Filter by Rider...">
                 
                       <table>
                         <thead>
                           <tr>
                             <th>Id</th>
-                            <th>Event</th>
-                            <th>Place</th>
-                            <th>Country</th>
+                            <th>Title</th>
+                            <th>Number</th>
+                            <th>Type</th>
+                            <th>ArenaType</th>
+                            <th>EId</th>
                           </tr>
                         </thead>
                         <tbody id="names">
@@ -130,6 +134,8 @@
                     </div>
                                        
                   
+
+
           </div>
 
       </div>  
@@ -141,7 +147,7 @@
 
     
 <footer id = "copyright" style  = "text-align: right;" >Copyright &copy; 2023 Tadas Laurinaitis</footer>
-    <script src="/js/todoEvent.js"></script>
+    <script src="/js/todoCompetition.js"></script>
   </body>
 </html>
 

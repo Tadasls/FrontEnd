@@ -37,7 +37,8 @@ function start() {
 //view list of all events
 const userViewFormSbmBtn = document.querySelector("#user-view-submit");
 
-  const url = "https://localhost:7134/api/Event/GetAllEvents";
+  //const url = "https://localhost:7134/api/Event/GetAllEvents";
+  const url = "https://localhost:7134/api/Entry/EntriesEager2";
   const options = {
     method: "get",
     headers: {
@@ -53,23 +54,123 @@ const userViewFormSbmBtn = document.querySelector("#user-view-submit");
       .then((a) => {
        //  console.log(a);
          let visiDuomenys = "";
-  
-      a.forEach((element) => {
-      //  console.log(element);
-        let filtruojamiDuomuo 
-        = `<tr><td> ${element.place}</td>
-               <td>${element.title}</td>
-               <td>${element.country}</td>
-     
-      </tr>`;
-        tarpas = `<hr>`;
-        visiDuomenys += tarpas;
-        visiDuomenys += filtruojamiDuomuo;
-  
+         a.forEach((element) => {
+          let parent =`<tr>
+                           <td>${element.eventID}</td>
+                           <td>${element.place}</td>
+                           <td>${element.title}</td>
+                           <td>${element.organizer}</td>
+                           </tr>`;
+          visiDuomenys += parent;
+          let allChildsTableStart = `<tr><td colspan="4">
+                                        <table><thead><tr>
+
+                                        <th>Arena</th>
+                                        <th>Title</th>
+                                        <th>Article</th>
+                                        <th>Class</th>
+                                        
+                                        </tr></thead><tbody>`
+          visiDuomenys += allChildsTableStart;
+          element.competitions.forEach((competition) => {
+              let child = `<tr></t>
+                                   <td>${competition.arenaType}</td>
+                                   <td>${competition.title}</td>
+                                   <td>${competition.article}</td>
+                                   <td>${competition.class}</td>
+                            </tr>`;
+              visiDuomenys += child;
+            });
+          let allChildsTableEnd = `</tbody></table></td></tr>`          
+          visiDuomenys += allChildsTableEnd;
       });
       names.innerHTML = visiDuomenys;
-  })
+      })
   }
+
+
+
+
+
+  // const url = "https://localhost:7134/api/Entry/EntriesEager2";
+  // const options = {
+  //   method: "get",
+  //   headers: {
+  //     Accept: "application/json",
+  //     "Content-Type": "application/json",
+  //   },
+  // };
+  // const response = {};
+  
+  // function viewData() {
+  //   fetch(url, options)
+  //     .then((response) => response.json())
+  //     .then((a) => {
+  //      //  console.log(a);
+  //        let visiDuomenys = "";
+  
+  //     a.forEach((element) => {
+  //     //  console.log(element);
+
+  //       let filtruojamiDuomuo 
+  //       = `<tr><td> ${element.place}</td>
+  //              <td>${element.title}</td>
+  //              <td>${element.country}</td>
+  //              <td>${element.organizer}</td>
+     
+  //     </tr>`;
+
+
+
+  //       tarpas = `<hr>`;
+  //       visiDuomenys += tarpas;
+  //       visiDuomenys += filtruojamiDuomuo;
+  
+  //     });
+  //     a.forEach((element) => {
+  //       element.competitions.forEach((competition) => {
+  //           let filtruojamiDuomuo
+  //           = `<tr><td> ${competition.arenaType}</td>
+  //                  <td>${competition.title}</td>
+  //                  <td>${competition.competitionType}</td>
+  //                  <td>${competition.article}</td>
+  //                  <td>${competition.class}</td>
+  //         </tr>`;
+  //           visiDuomenys += filtruojamiDuomuo;
+  //       });
+  //   });
+    
+
+
+  //     names.innerHTML = visiDuomenys;
+  // })
+  // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
