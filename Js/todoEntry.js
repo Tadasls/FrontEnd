@@ -24,7 +24,7 @@ function filter() {
   var rows = names.getElementsByTagName("tr");
 
   for (i = 0; i < rows.length; i++) {
-    let column = rows[i].getElementsByTagName("td")[3];
+    let column = rows[i].getElementsByTagName("td")[2];
     let language = column.textContent;
 
     rows[i].style.display =

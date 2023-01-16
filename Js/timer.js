@@ -2,11 +2,18 @@
 document.addEventListener("DOMContentLoaded", () => {
   const o = Object.assign({}, JSON.parse(localStorage.getItem('userData')));
   nulinis.innerHTML = o.userName ?? ``;
+
   if (!o.userName) {
     alert('No Access. Please Log in');
     window.location.href = "login.html";}
-});
 
+    const rol = Object.assign({}, JSON.parse(localStorage.getItem('role')));
+    console.log(rol.role)
+    if (rol.role!=`admin`) {
+      console.log(rol.role)
+        alert('No Access. Just For Admins');
+        window.location.href = "todo.html";}
+});
 
 
 var milliseconds = 0;
@@ -39,19 +46,14 @@ function start() {
     }, 10);
 
 
-
   }
 
 }
 }
 
 
-
-
-
 const dtPoints = document.querySelector('#Points');
 const dtTime = document.querySelector('#Time');
-
 
 
 function stopTimer() {
@@ -59,7 +61,7 @@ function stopTimer() {
     running = false;
 
     dtPoints.value = points?? ``;
-    dtTime.value = seconds+minutes/60 ?? ``;
+    dtTime.value = seconds+minutes/60+milliseconds/100?? ``;
 }
 
 function resetTimer() {
@@ -144,3 +146,6 @@ const arUzpyldytiVartDuomenis = () => {
   if (!Time.value) return false;
   return true;
 };
+
+
+

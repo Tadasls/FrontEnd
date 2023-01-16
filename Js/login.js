@@ -32,10 +32,12 @@ fetch(postURL, {
   var resBody = await res.json();
  const userName = {userName: resBody.userName};
  const localUserId = {userID: resBody.id};
+ const userRole = {role: resBody.role};
 
   window.localStorage.setItem('token', resBody.token);
   window.localStorage.setItem('userData', JSON.stringify(userName));
   window.localStorage.setItem('localUserId', JSON.stringify(localUserId));
+  window.localStorage.setItem('role', JSON.stringify(userRole));
 
   if(res.ok)
   {

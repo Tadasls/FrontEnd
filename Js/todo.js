@@ -53,7 +53,8 @@ const url = "https://localhost:7134/GetAllNotificationsForUser/"+userID.userID;
         = `<tr><td> ${element.notificationID}</td>
                <td>${element.topic}</td>
                <td>${element.message}</td>
-     
+               <td><div id="checkboxContainer"> Delete <input id="not-${element.notificationID}" onclick="delNot(${element.notificationID})" type="checkbox" /> </div></td>
+
       </tr>`;
         tarpas = `<hr>`;
         visiDuomenys += tarpas;
@@ -64,12 +65,22 @@ const url = "https://localhost:7134/GetAllNotificationsForUser/"+userID.userID;
   })
   }
 
-
   userViewFormSbmBtn.addEventListener("click", (e) => {
     e.preventDefault();
     viewData();
   });
 
 
-
-
+// test new posibilities
+const delNot = async (id) => {
+  let response = await fetch(`https://localhost:7134/api/Notification/Notification/delete/${id}`, {
+      method: `delete`,
+      headers: {
+          'Authorization': `Bearer ${localStorage.getItem(`token`)}`
+      },
+  })
+  if(response.ok){
+    viewData();
+  }
+  else console.log(response.status);
+}
