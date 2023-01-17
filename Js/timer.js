@@ -125,6 +125,7 @@ function editData() {
     if(res.ok)
     {
       window.alert("data updated");
+      viewData(EntryID);
     }
     var resBody = await res.json();
 
@@ -137,11 +138,11 @@ function editData() {
 // mygtukas siusti duomenis
 dataFormSbmBtn.addEventListener("click", (e) => {
   e.preventDefault();
-  if (arUzpyldytiVartDuomenis()) {editData(); viewData(EntryID);} 
+  if (arUzpyldytiVartDuomenis()) {editData();} 
   else  { window.alert("Duomenis nėra pilnai užpildyti");}
   });
 
-
+  // viewData(EntryID);
 
 //validation
 const arUzpyldytiVartDuomenis = () => {

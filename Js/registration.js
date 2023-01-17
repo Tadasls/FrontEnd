@@ -103,7 +103,6 @@ function arEgzistuojaToksVartotojas() {
     const regFirstName = document.querySelector('#FirstName');
     const regLastName = document.querySelector('#LastName');
     const regPassword = document.querySelector('#Password');
-    const regRole = document.querySelector('#Role');
     const regAdress = document.querySelector('#Adress');
     const regPhone = document.querySelector('#Phone');
     const regEmail = document.querySelector('#Email');
@@ -129,9 +128,6 @@ regLastName.addEventListener('change', (e) => {
 regPassword.addEventListener('change', (e) => {
   saveFormData('regPassword', e.target.value);
 });
-regRole.addEventListener('change', (e) => {
-  saveFormData('regRole', e.target.value);
-});
 regAdress.addEventListener('change', (e) => {
   saveFormData('regAdress', e.target.value);
 });
@@ -153,7 +149,6 @@ document.addEventListener('DOMContentLoaded', () => {
   regFirstName.value = o.regFirstName ?? ``;
   regLastName.value = o.regLastName ?? ``;
   regPassword.value = o.regPassword ?? ``;
-  regRole.value = o.regRole ?? ``;
   regAdress.value = o.regAdress ?? ``;
   regPhone.value = o.regPhone ?? ``;
   regEmail.value = o.regEmail ?? ``;
