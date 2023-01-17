@@ -8,12 +8,14 @@ document.addEventListener("DOMContentLoaded", () => {
     window.location.href = "login.html";}
 
     const rol = Object.assign({}, JSON.parse(localStorage.getItem('role')));
-    console.log(rol.role)
+   // console.log(rol.role)
     if (rol.role!=`admin`) {
-      console.log(rol.role)
+   //   console.log(rol.role)
         alert('No Access. Just For Admins');
         window.location.href = "todo.html";}
 });
+
+
 
 
 var milliseconds = 0;
