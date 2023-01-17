@@ -95,7 +95,8 @@ function clearPoints(){
 //edit data implementation
 const dataForm = document.querySelector("#user-edit-form");
 const dataFormSbmBtn = document.querySelector("#user-edit-form-submit");
-const urlUpdate = "https://localhost:7134/api/Entry/Entrys/update/";
+//const urlUpdate = "https://localhost:7134/api/Entry/Entrys/update/";
+const urlUpdate = "https://localhost:7134/api/Entry/EntryAdmin/update/";
 const errorEle = document.querySelector(".error-message");
 
 
