@@ -50,7 +50,7 @@
   
             <form id="new-registration-form">
                 
-                <label for="UserName">UserName</label>
+                <label for="UserName">UserName*</label>
                 <input type="text" name="UserName" id="UserName" placeholder="UserName"><br><br>
                
                 <label for="FirstName">FirstName</label>
@@ -59,11 +59,15 @@
                 <label for="LastName">LastName</label>
                 <input type="text" name="LastName" id="LastName" placeholder="LastName"><br><br>
 
-                <label for="password">Password</label>
+                <label for="password">Password*</label>
                 <input type="password" name="Password" id="Password" placeholder="Password"><br><br>
                 
-                <label for="Role">Role</label>
-                <input type="text" name="Role" id="Role" placeholder="Role"><br><br>
+                <label for="Role">Role*</label>
+                <!-- <input type="text" name="Role" id="Role" placeholder="Role"><br><br> -->
+                <select id="role" name="role" size="1" style="width: 200px;">
+                  <option value="user">user</option>
+                  <option value="admin">admin</option>
+                </select><br><br>
                 
                 <label for="Adress">Adress</label>
                 <input type="text" name="Adress" id="Adress" placeholder="Adress"><br><br>
@@ -71,7 +75,7 @@
                 <label for="Phone">Phone</label>
                 <input type="text" name="Phone" id="Phone" placeholder="Phone"><br><br>
 
-                <label for="Email">Email</label>
+                <label for="Email">Email*</label>
                 <input type="text" name="Email" id="Email" placeholder="Email"><br><br>
 
                 <label for="Language">Language</label>

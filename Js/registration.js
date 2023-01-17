@@ -61,13 +61,10 @@ function sendData() {
 
 
 
-
-//validacija nereikalinga nes atliekama backende, tik ar gauna pranesima matoma ?
-
 function arEgzistuojaToksVartotojas() {
   let userExists = false
  
-  // const url = 'https://testapi.io/api/Tadasls/resource/TLSusersDB';
+
   const url = 'https://localhost:7125/api/user/get';
   const options = {
       method: 'get',

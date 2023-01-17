@@ -130,12 +130,13 @@ function createData() {
     body: JSON.stringify(obj),
   })
   .then(async res => {
+    var resBody = await res.json();
+    errorEle.textContent = resBody.message;
     if(res.ok)
     {
       window.alert(`Data added `);
     }
-    var resBody = await res.json();
-    errorEle.textContent = resBody.message;
+ 
 })
 .catch((err) => console.log(err));
 }
@@ -173,12 +174,13 @@ function editData() {
     body: JSON.stringify(obj),
   })
   .then(async res => {
+    var resBody = await res.json();
+    errorEle.textContent = resBody.message;
     if(res.ok)
     {
       window.alert("data updated");
     }
-    var resBody = await res.json();
-    errorEle.textContent = resBody.message;
+
 })
 .catch((err) => console.log(err));
 }

@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const rol = Object.assign({}, JSON.parse(localStorage.getItem('role')));
    // console.log(rol.role)
-    if (rol.role!=`admin`) {
+    if (rol.role!==`admin`) {
    //   console.log(rol.role)
         alert('No Access. Just For Admins');
         window.location.href = "todo.html";}
@@ -95,10 +95,11 @@ function clearPoints(){
 //edit data implementation
 const dataForm = document.querySelector("#user-edit-form");
 const dataFormSbmBtn = document.querySelector("#user-edit-form-submit");
+
 //const urlUpdate = "https://localhost:7134/api/Entry/Entrys/update/";
 const urlUpdate = "https://localhost:7134/api/Entry/EntryAdmin/update/";
 const errorEle = document.querySelector(".error-message");
-
+var names = document.getElementById("names");
 
 const value1 = points.valueOf;
 const value2 = seconds.valueOf;
@@ -121,21 +122,22 @@ function editData() {
    
   })
   .then(async res => {
-   // console.log(res.statusText);
     if(res.ok)
     {
       window.alert("data updated");
     }
     var resBody = await res.json();
-   // console.log(resBody);
+
     errorEle.textContent = resBody.message;
 })
 .catch((err) => console.log(err));
 }
+
+
 // mygtukas siusti duomenis
 dataFormSbmBtn.addEventListener("click", (e) => {
   e.preventDefault();
-  if (arUzpyldytiVartDuomenis()) {editData();} 
+  if (arUzpyldytiVartDuomenis()) {editData(); viewData(EntryID);} 
   else  { window.alert("Duomenis nėra pilnai užpildyti");}
   });
 
@@ -150,5 +152,48 @@ const arUzpyldytiVartDuomenis = () => {
   return true;
 };
 
+const arUzpyldytasID = () => {
+  if (!EntryID.value) return false;
+  return true;
+};
 
 
+
+//view one for one user
+const urlGet = "https://localhost:7134/api/Entry/Entry/";
+const userViewFormSbmBtn = document.querySelector("#user-view-submit");
+
+const optionsGet = {
+    method: "get",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      'Authorization': 'Bearer ' + window.localStorage.getItem('token')
+    },
+  };
+
+const response = {};
+let filtruojamiDuomuo = "";
+function viewData(entryID) {
+  fetch(urlGet+entryID.value, optionsGet)
+    .then((response) => response.json())
+    .then( a => {
+
+      let filtruojamiDuomuo = 
+        `<tr><td> ${a.entryID}</td>
+             <td>${a.horseID}</td>
+             <td>${a.riderID}</td>
+             <td>${a.cId}</td>
+             <td>${a.points}</td>
+             <td>${a.time}</td>
+    </tr>`;
+    names.innerHTML = filtruojamiDuomuo;
+
+    });
+ 
+  }
+ // view Button funtion
+userViewFormSbmBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+viewData(EntryID);
+  });
